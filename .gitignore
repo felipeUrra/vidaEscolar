@@ -1,0 +1,7 @@
+out/
+.idea/
+vidaEscolar.iml
+*.class
+*.html
+*.xml
+*.iml
