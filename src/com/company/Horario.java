@@ -58,4 +58,16 @@ public class Horario {
         }
         return "Esta asignatura ya fue añadida." + "\n";
     }
+
+    public void calcularPromedioTodasAsignaturas(){
+        float promedioGuardado = 0;
+        int contadorPromedio = 0;
+
+        for (Asignatura asigAux: this.getAsignaturaList()) {
+            promedioGuardado += asigAux.calcularPromedioAsignaturaEspecifica(this);
+            contadorPromedio ++;
+        }
+
+        System.out.println("Promedio general de todas las asignaturas: " + promedioGuardado/contadorPromedio);
+    }
 }

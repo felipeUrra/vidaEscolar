@@ -39,7 +39,7 @@ public class Asignatura {
         } else {
             System.out.println(horario.getAsignaturaList().get(this.id).getNombre() + ":");
             for (Nota notaAux : horario.getAsignaturaList().get(this.id).getNotaList()) {
-                System.out.println("Tipo de evaluacion: " + notaAux.getTipoDeEvaluacion() + "\n" + "Nota: " + notaAux.getPuntuacion());
+                System.out.println("Tipo de evaluacion: " + notaAux.getTipoDeEvaluacion() + "   Nota: " + notaAux.getPuntuacion());
             }
             System.out.println("\n");
         }
@@ -60,9 +60,38 @@ public class Asignatura {
             horario.getAsignaturaList().get(this.id).getNotaList().add(new Nota(nuevaNota, this.nombre, tipoEvaluacion));
         } else {
             System.out.println("Por favor, introduzca los datos correctamente");
-            Main.mostrarOpciones(scanner);
         }
 
+    }
+
+    public float calcularPromedioAsignaturaEspecifica(Horario horario){
+        float notaGuardadaACS = 0;
+        int contadorACS = 0;
+        float notaGuardadaTCP = 0;
+        int contadorTCP = 0;
+        float notaGuardadaPF = 0;
+        int contadorPF = 0;
+
+        for (Nota notaAux: horario.getAsignaturaList().get(this.id).getNotaList()) {
+
+            if (notaAux.getTipoDeEvaluacion().toString().equals("ACS")) {
+                notaGuardadaACS += notaAux.getPuntuacion();
+                contadorACS ++;
+            } else if (notaAux.getTipoDeEvaluacion().toString().equals("TCP")) {
+                notaGuardadaTCP += notaAux.getPuntuacion();
+                contadorTCP ++;
+            } else {
+                notaGuardadaPF += notaAux.getPuntuacion();
+                contadorPF ++;
+            }
+        }
+
+        float resultado = notaGuardadaACS/contadorACS + notaGuardadaTCP/contadorTCP + notaGuardadaPF/contadorPF;
+
+        System.out.println("Promedio general de " + this.nombre + ": " + resultado + "\n" +
+                "ACS: " + notaGuardadaACS/contadorACS + "   TCP: " + notaGuardadaTCP/contadorTCP + "   PF: " + notaGuardadaPF/contadorPF + "\n");
+
+        return resultado;
     }
 
 }

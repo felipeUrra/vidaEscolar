@@ -16,6 +16,8 @@ public class Main {
                 "2. Añadir una asignatura" + "\n" +
                 "3. Ver notas de una asignatura" + "\n" +
                 "4. Añadir una nota a una asignatura" + "\n" +
+                "5. Ver el promedio de una asignatura (cada tipo de nota tiene su promedio individual)" + "\n" +
+                "6. Ver el promedio de todas las asignaturas (cada tipo de nota tiene su promedio individual)" + "\n" +
                 "0. Salir");
 
         return scanner.nextInt();
@@ -81,8 +83,34 @@ public class Main {
                                 }
                             }
                         }
-                        break;
                     }
+                    break;
+                case 5: // Ver promedio de una asignatura
+                    if (horario.getAsignaturaList().isEmpty()){
+                        System.out.println("Por favor, introduzca alguna asignatura, para que le pueda añadir notas." + "\n");
+                    }
+                    else {
+                        idContador = horario.getAsignaturaList().size();
+
+                        System.out.println("Introduzca el id de la asignatura a la que desea añadirle una nota:");
+                        horario.verAsignaturas();
+                        idAsig = scanner.nextInt();
+
+                        for (Asignatura asigAux: horario.getAsignaturaList()) {
+                            if (idAsig == asigAux.getId()) {
+                                horario.getAsignaturaList().get(idAsig).calcularPromedioAsignaturaEspecifica(horario);
+                            } else {
+                                idContador--;
+                                if (idContador == 0){
+                                    System.out.println("Por favor, introduzca un id correcto" + "\n");
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case 6: // Ver promedio de todas las asignaturas
+                    horario.calcularPromedioTodasAsignaturas();
+                    break;
                 default:
                     System.out.println("Introduzca el numero de una opcion existente, por favor.");
                     break;
