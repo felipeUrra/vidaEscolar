@@ -33,13 +33,13 @@ public class Main {
                     salir = true;
                     break;
                 case 1: // Ver asignaturas
-                    Horario.verAsignaturas(horario);
+                    horario.verAsignaturas();
                     break;
                 case 2: // Añadir asignaturas
-                    System.out.println(Horario.annadirAsignaturas(horario));
+                    System.out.println(horario.annadirAsignaturas());
                     break;
                 case 3: // Ver notas
-                    Horario.verAsignaturas(horario);
+                    horario.verAsignaturas();
                     idContador = horario.getAsignaturaList().size();
 
                     if (horario.getAsignaturaList().isEmpty()) {
@@ -61,7 +61,7 @@ public class Main {
                     }
                     break;
                 case 4: // Añadir notas
-                    Horario.verAsignaturas(horario);
+                    horario.verAsignaturas();
                     idContador = horario.getAsignaturaList().size();
 
                     if (horario.getAsignaturaList().isEmpty()){

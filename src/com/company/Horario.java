@@ -13,44 +13,44 @@ public class Horario {
         this.asignaturaList = asignaturaList;
     }
 
-    public static void verAsignaturas(Horario horario){
-        if (horario.asignaturaList.isEmpty()){
+    public void verAsignaturas(){
+        if (this.asignaturaList.isEmpty()){
             System.out.println("No se ha añadido ninguna asignatura." + "\n");
         }
         else {
             System.out.println("Asignaturas:");
-            for (Asignatura asigAux: horario.asignaturaList){
+            for (Asignatura asigAux: this.asignaturaList){
                 System.out.println(asigAux.getId() + ": " + asigAux.getNombre());
             }
             System.out.println("\n");
         }
     }
-    public static String annadirAsignaturas(Horario horario){
+    public String annadirAsignaturas(){
         System.out.println("Nombre de la asignatura a añadir:");
         Scanner scanner = new Scanner(System.in);
         String nombreAsig = scanner.nextLine().toUpperCase();
-        int contador = horario.asignaturaList.size();
+        int contador = this.asignaturaList.size();
         int indice = 0;
 
-        if (horario.asignaturaList.isEmpty()) {
-            horario.asignaturaList.add(new Asignatura(nombreAsig));
+        if (this.asignaturaList.isEmpty()) {
+            this.asignaturaList.add(new Asignatura(nombreAsig));
             return "Asignatura añadida ;)." + "\n";
-        } else if (horario.asignaturaList.size() == 1) {
-            if (horario.asignaturaList.get(0).getNombre().equals(nombreAsig)) {
+        } else if (this.asignaturaList.size() == 1) {
+            if (this.asignaturaList.get(0).getNombre().equals(nombreAsig)) {
                 return "Esta asignatura ya fue añadida." + "\n";
             } else {
-                horario.asignaturaList.add(new Asignatura(nombreAsig));
+                this.asignaturaList.add(new Asignatura(nombreAsig));
                 return "Asignatura añadida ;)." + "\n";
             }
 
         } else {
-            for (Asignatura asigAux: horario.asignaturaList){
+            for (Asignatura asigAux: this.asignaturaList){
                 indice ++;
                 if (asigAux.getNombre().equals(nombreAsig)) {
                     contador -= 1;
                 } else {
-                    if (contador == horario.asignaturaList.size() && indice == horario.asignaturaList.size()){
-                        horario.asignaturaList.add(new Asignatura(nombreAsig));
+                    if (contador == this.asignaturaList.size() && indice == this.asignaturaList.size()){
+                        this.asignaturaList.add(new Asignatura(nombreAsig));
                         return "Asignatura añadida ;)." + "\n";
                     }
                 }
